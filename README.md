@@ -19,6 +19,7 @@ Make sure you have `mkcert` (https://mkcert.dev/) installed, and generate the lo
 Makes ure dnsmasq is installed. This tool will help us redirect all docker traffic to our localhost.
 
 **Installing dnsmasq**
+
 For MacOS (with homebrew): `brew install dnsmasq`
 
 For Ubuntu 18.04:
@@ -41,6 +42,7 @@ sudo apt update && sudo apt install dnsmasq
 ```
 
 **Configure to redirect docker.localhost domains**
+
 For mac:
 - Create a resolver directory
 ```
@@ -56,6 +58,7 @@ EOF
 ```
 
 For Ubuntu 18.04:
+
 _Coming soon_
 
 ## Getting started
