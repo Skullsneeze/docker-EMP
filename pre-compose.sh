@@ -1,20 +1,20 @@
 #!/bin/bash
 
 helpDialog="
-\033[32m╔═╗╦═╗╔═╗  ╔═╗╔═╗╔╦╗╔═╗╔═╗╔═╗╔═╗
+╔═╗╦═╗╔═╗  ╔═╗╔═╗╔╦╗╔═╗╔═╗╔═╗╔═╗
 ╠═╝╠╦╝║╣───║  ║ ║║║║╠═╝║ ║╚═╗║╣
-╩  ╩╚═╚═╝  ╚═╝╚═╝╩ ╩╩  ╚═╝╚═╝╚═╝\033[0m
+╩  ╩╚═╚═╝  ╚═╝╚═╝╩ ╩╩  ╚═╝╚═╝╚═╝
 
-\033[3mMaking docker-compose that bit more awesome.\033[0m
+Making docker-compose that bit more awesome.
 ---------------------------------------------------------------------------------
 
-\033[4mUsage\033[0m:
+Usage:
 $(basename "$0") [-h|--help] [-u|--no-ssl] [-v|--verbose]
 
 Arguments:
-    -h|--help       \033[3mDisplay this help dialog.\033[0m
-    -s|--ssl        \033[3mGenerate SSL certificate.\033[0m
-    -m|--mage       \033[3mRun commands to ensure Magento can run properly.\033[0m
+    -h|--help       Display this help dialog.
+    -s|--ssl        Generate SSL certificate.
+    -m|--mage       Run commands to ensure Magento can run properly.
 
 NOTE:
 The .env file that is used for docker is also used to supply variables for this script.
@@ -61,9 +61,11 @@ echo -e "$text_seperator";
 
 # Export vars defined in .env
 if [ -f "$PWD/.env" ]; then
-    echo ".env file located. Exporting variables";
-    export $(grep -v '^#' .env | xargs -d '\n')
-    echo -e "$text_seperator";
+    set -o allexport
+    source "$PWD/.env"
+    set +o allexport
+else
+    echo "No .env file has been found. Please make sure you have you supply a .env file within the current directory."
 fi
 
 # SSL generation
